@@ -1,9 +1,13 @@
+// @flow
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import { Alert } from 'reactstrap';
 import './App.css';
 
-class App extends Component {
+type Props = {
+};
+
+class App extends Component<Props> {
   render() {
     return (
       <Alert color="primary">
