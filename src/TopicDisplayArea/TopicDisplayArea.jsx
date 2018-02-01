@@ -14,12 +14,13 @@ const TopicDisplayArea = ({topTopics, upvoteTopic, downvoteTopic}: Props) => {
     return (
       <Container>
         {
-          topTopics.map(topic => (
+          topTopics.map((topic, index) => (
             <TopicDisplayRow
               text={topic.getText()}
               votes={topic.getVotes()}
-              id={topic.getId()}
-              key={topic.getId()}
+              topicId={topic.getId()}
+              key={index}
+              index={index}
               upvoteTopic={upvoteTopic}
               downvoteTopic={downvoteTopic}
             />

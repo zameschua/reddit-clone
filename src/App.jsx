@@ -26,7 +26,7 @@ class App extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.createTopic = this.createTopic.bind(this);
-    this.upvoteTopic = this.createTopic.bind(this);
+    this.upvoteTopic = this.upvoteTopic.bind(this);
     this.downvoteTopic = this.downvoteTopic.bind(this);
   }
 
@@ -46,7 +46,6 @@ class App extends Component<Props, State> {
     this.setState((prevState, props) => {
       return {topics: prevState.topics.createTopic(text)};
     })
-    console.log(this.state);
   }
 
   render() {

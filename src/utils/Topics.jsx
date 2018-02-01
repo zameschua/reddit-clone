@@ -1,6 +1,15 @@
 // @flow
 import Topic from './Topic';
 
+/**
+Data structure to store several `Topic` in a priority queue
+The internal structure is implemented with an array,
+and a hashmap to reference array items
+
+`Topics` was implemented as such to allow O(1) topic retrieval
+
+The `Topic` with the most votes will be at index 0 of the array
+*/
 export default class Topics {
   topicsArray: Array<Topic>;
   topicsHashmap: {};
@@ -26,7 +35,7 @@ export default class Topics {
   }
 
   upvoteTopic(id: number): Topics {
-    let topicIndex = this.topicsHashmap[id];
+    let topicIndex: number = this.topicsHashmap[id];
     const topic: Topic = this.topicsArray[topicIndex];
     topic.upvote();
 
@@ -34,7 +43,7 @@ export default class Topics {
     while (topicIndex >= 1) {
       const topicVotes = topic.getVotes();
       const nextTopic: Topic = this.topicsArray[topicIndex - 1];
-      const nextTopicVotes = topic.getVotes();
+      const nextTopicVotes = nextTopic.getVotes();
 
       // Swap the topics positions in the array and hashmap
       if (topicVotes > nextTopicVotes) {
@@ -53,21 +62,24 @@ export default class Topics {
   }
 
   downvoteTopic(id: number): Topics {
-    let topicIndex = this.topicsHashmap[id];
+    let topicIndex: number = this.topicsHashmap[id];
     const topic: Topic = this.topicsArray[topicIndex];
     topic.downvote();
 
     // Shift the topic down the priority queue if required
-    while (topicIndex < this.topicsArray.length) {
+    while (topicIndex < this.topicsArray.length - 1) {
       const topicVotes = topic.getVotes();
       const nextTopic: Topic = this.topicsArray[topicIndex + 1];
-      const nextTopicVotes = topic.getVotes();
+      const nextTopicVotes = nextTopic.getVotes();
 
       // Swap the topics positions in the array
       if (topicVotes < nextTopicVotes) {
         this.topicsArray[topicIndex] = nextTopic;
         this.topicsArray[topicIndex + 1] = topic;
-        topicIndex -= 1;
+        // Swap their values in the Hashmap
+        this.topicsHashmap[topic.getId()] += 1;
+        this.topicsHashmap[nextTopic.getId()] -= 1;
+        topicIndex += 1;
       } else {
         break;
       }

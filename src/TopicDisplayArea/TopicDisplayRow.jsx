@@ -6,19 +6,21 @@ import VotingArea from './VotingArea';
 type Props = {
   text: string,
   votes: number,
-  id: number,
+  topicId: number,
+  index: number,
   upvoteTopic: Function,
   downvoteTopic: Function,
 };
 
-const TopicDisplayRow = ({text, votes, id, upvoteTopic, downvoteTopic}: Props) => {
+const TopicDisplayRow = ({text, votes, topicId, index, upvoteTopic, downvoteTopic}: Props) => {
     return (
-      <Container>
+      <Container style={{border: "solid"}}>
         <Row>
           <Col md="1">
             <VotingArea
               votes={votes}
-              id={id}
+              topicId={topicId}
+              index={index}
               upvoteTopic={upvoteTopic}
               downvoteTopic={downvoteTopic}
             />
