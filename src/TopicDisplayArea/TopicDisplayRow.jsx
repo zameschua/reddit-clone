@@ -1,20 +1,30 @@
 // @flow
 import * as React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import VotingArea from './VotingArea';
 
 type Props = {
+  text: string,
+  votes: number,
+  id: number,
+  upvoteTopic: Function,
+  downvoteTopic: Function,
 };
 
-const TopicDisplayRow = (props: Props) => {
+const TopicDisplayRow = ({text, votes, id, upvoteTopic, downvoteTopic}: Props) => {
     return (
       <Container>
         <Row>
           <Col md="1">
-            <VotingArea />
+            <VotingArea
+              votes={votes}
+              id={id}
+              upvoteTopic={upvoteTopic}
+              downvoteTopic={downvoteTopic}
+            />
           </Col>
           <Col md="10">
-            <p>This is the topic</p>
+            <p>{text}</p>
           </Col>
         </Row>
       </Container>

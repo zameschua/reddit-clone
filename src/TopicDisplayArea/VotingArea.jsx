@@ -3,19 +3,29 @@ import * as React from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
 
 type Props = {
+  votes: number,
+  id: number,
+  upvoteTopic: Function,
+  downvoteTopic: Function,
 };
 
-const VotingArea = (props: Props) => {
+const VotingArea = ({votes, id, upvoteTopic, downvoteTopic}: Props) => {
     return (
       <Container>
         <Row>
-          <Button>Up</Button>
+          <Col>
+            <Button>Up</Button>
+          </Col>
         </Row>
         <Row>
-          <p>20</p>
+          <Col>
+            <p>{votes}</p>
+          </Col>
         </Row>
         <Row>
-          <Button>Down</Button>
+          <Col>
+            <Button>Down</Button>
+          </Col>
         </Row>
       </Container>
     )
