@@ -1,6 +1,9 @@
 # Reddit Clone App
 This project lives at https://zames-reddit-clone.herokuapp.com/
 
+This project was made for the coding challenge for a job interview.
+I took this chance to learn how to use Flow and Jest and include them in my project because I have never used these libraries before!
+
 ### Features
 1. Users can submit topics (< 255 characters)
 2. Users can upvote or downvote topics
@@ -15,12 +18,18 @@ This project lives at https://zames-reddit-clone.herokuapp.com/
 
 ### How to build the project
 1. Clone the repo to your pc
-> $ git clone https://github.com/zameschua/reddit-clone.git
+```
+$ git clone https://github.com/zameschua/reddit-clone.git
+```
 2. Navigate into the project folder
+```
 > $ cd reddit-clone.git
+```
 3. Simply run:
+```
 > npm install
 > npm start
+```
 
 ## Key Features and their Implementation
 ### Underlying data structure
