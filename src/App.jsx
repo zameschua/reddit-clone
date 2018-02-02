@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import TopicSubmissionArea from './TopicSubmissionArea';
+import TopicSubmissionArea from './TopicSubmissionArea/TopicSubmissionArea';
 import TopicDisplayArea from './TopicDisplayArea/TopicDisplayArea';
 import Topics from './utils/Topics';
 import { Container } from 'reactstrap';
