@@ -7,14 +7,14 @@ type Props = {
 };
 
 type State = {
-  newTopicText: string,
+  topicText: string,
 }
 
 class TopicSubmissionArea extends Component<Props, State> {
   handleChange: Function;
   handleSubmit: Function;
   state = {
-    newTopicText: "",
+    topicText: "",
   }
 
   constructor(props: Props) {
@@ -25,19 +25,27 @@ class TopicSubmissionArea extends Component<Props, State> {
 
   handleChange(event: SyntheticInputEvent<HTMLTextAreaElement>) {
     this.setState({
-      newTopicText: event.target.value,
+      topicText: event.target.value,
     });
   }
 
   handleSubmit() {
-    this.props.createTopic(this.state.newTopicText);
+    this.props.createTopic(this.state.topicText);
+    // Clear the textarea and state
+    this.setState({
+      topicText: "",
+    });
   }
 
   render() {
     return <Form>
       <FormGroup>
         <Label for="textArea">Text Area</Label>
-        <Input type="textarea" onChange={this.handleChange}/>
+        <Input
+          type="textarea"
+          onChange={this.handleChange}
+          value={this.state.topicText}
+        />
       </FormGroup>
       <Button onClick={this.handleSubmit}>Submit</Button>
     </Form>
