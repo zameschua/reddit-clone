@@ -43,9 +43,9 @@ class TopicSubmissionArea extends Component<Props, State> {
   }
 
   render() {
-    return <Form>
+    return <Form style={{margin: "30px 15px"}}>
       <FormGroup>
-        <Label for="textArea">Text Area</Label>
+        <Label for="textArea">What topic would you like to talk about today?</Label>
         <Input
           type="textarea"
           onChange={this.handleChange}

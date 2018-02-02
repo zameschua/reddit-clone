@@ -14,9 +14,9 @@ type Props = {
 
 const TopicDisplayRow = ({text, votes, topicId, index, upvoteTopic, downvoteTopic}: Props) => {
     return (
-      <Container style={{border: "solid"}}>
+      <Container style={{backgroundColor: "#ecf0f1", padding: "10px", marginTop: "10px"}}>
         <Row>
-          <Col md="1">
+          <Col md="2">
             <VotingArea
               votes={votes}
               topicId={topicId}

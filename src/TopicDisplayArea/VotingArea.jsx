@@ -14,25 +14,30 @@ const VotingArea = ({votes, topicId, index, upvoteTopic, downvoteTopic}: Props) 
     return (
       <Container>
         <Row>
-          <Col md="3">
-            <p>{index}.</p>
+          <Col>
+            <Button
+              color="success"
+              onClick={() => upvoteTopic(topicId)}
+              block
+            >
+              Upvote
+            </Button>
           </Col>
-          <Col md="9">
-            <Row>
-              <Col>
-                <Button onClick={() => upvoteTopic(topicId)}>Up</Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <p>{votes}</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Button onClick={() => downvoteTopic(topicId)}>Down</Button>
-              </Col>
-            </Row>
+        </Row>
+        <Row>
+          <Col style={{textAlign: "center"}}>
+            <p>{votes}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Button
+              color="danger"
+              onClick={() => downvoteTopic(topicId)}
+              block
+            >
+              Downvote
+            </Button>
           </Col>
         </Row>
       </Container>
