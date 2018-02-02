@@ -30,11 +30,16 @@ class TopicSubmissionArea extends Component<Props, State> {
   }
 
   handleSubmit() {
-    this.props.createTopic(this.state.topicText);
-    // Clear the textarea and state
-    this.setState({
-      topicText: "",
-    });
+    const text = this.state.topicText;
+    if (text.length <= 255) {
+      this.props.createTopic(this.state.topicText);
+      // Clear the textarea and state
+      this.setState({
+        topicText: "",
+      });
+    } else if (text.length > 255) {
+      alert("Topics should not exceed 255 characters!");
+    }
   }
 
   render() {
