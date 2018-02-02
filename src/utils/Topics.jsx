@@ -30,6 +30,10 @@ export default class Topics {
     return this;
   }
 
+  getTopics(): Array<Topic> {
+    return this.topicsArray;
+  }
+
   getTopTopics(): Array<Topic> {
     return this.topicsArray.slice(0, 20);
   }
