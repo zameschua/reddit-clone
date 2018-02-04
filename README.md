@@ -27,8 +27,8 @@ $ git clone https://github.com/zameschua/reddit-clone.git
 ```
 3. Simply run:
 ```
-> npm install
-> npm start
+> $ npm install
+> $ npm start
 ```
 
 ## Key Features and their Implementation
@@ -37,6 +37,7 @@ The data structure used to maintain the list of topics is a Array based Priority
 The reason why this was used is because
 1. It is relatively easier to implement than other data structures such as a max heap
 2. The O(1) retrieval time is important for web pages since users expect a web page to load fast
+3. The O(n) time taking to update / upvote / downvote should not be that significant since for our purpose, the number of topics is not that large. Also Reddit / Digg doesn't really have real-time tracking of topics so my simpler implementation should be sufficient
 
 The Priority Queue is called `Topics` (under `/src/utils/`), and they maintain a list of `Topic`.
 The Priority Queue comprises of
