@@ -24,9 +24,33 @@ export default class Topics {
   }
 
   createTopic(text: string): Topics {
-    this.topicsArray.push(new Topic(text, this.idCounter)); // Add topic to end of array
-    this.topicsHashmap[this.idCounter] = this.topicsArray.length - 1;
+    const topic: Topic = new Topic(text, this.idCounter);
+    this.topicsArray.push(topic); // Add topic to end of array
+    let topicIndex: number = this.topicsArray.length - 1;
+    this.topicsHashmap[this.idCounter] = topicIndex; // Add topic to hashmap
     this.idCounter++;
+
+    // Iteratively shift the topic up the priority queue if required
+    // Takes care of the case when there are negative-voted topics upon insertion
+    while (topicIndex >= 1) {
+      const topicVotes = topic.getVotes();
+      const nextTopic: Topic = this.topicsArray[topicIndex - 1];
+      const nextTopicVotes = nextTopic.getVotes();
+
+      // Swap the topics positions in the array and hashmap
+      if (topicVotes > nextTopicVotes) {
+        // Swap the topics positions in the array
+        this.topicsArray[topicIndex] = nextTopic;
+        this.topicsArray[topicIndex - 1] = topic;
+        // Swap their values in the Hashmap
+        this.topicsHashmap[topic.getId()] -= 1;
+        this.topicsHashmap[nextTopic.getId()] += 1;
+        topicIndex -= 1;
+      } else {
+        break;
+      }
+    }
+
     return this;
   }
 
@@ -43,7 +67,7 @@ export default class Topics {
     const topic: Topic = this.topicsArray[topicIndex];
     topic.upvote();
 
-    // Shift the topic up the priority queue if required
+    // Iteratively shift the topic up the priority queue if required
     while (topicIndex >= 1) {
       const topicVotes = topic.getVotes();
       const nextTopic: Topic = this.topicsArray[topicIndex - 1];
@@ -70,7 +94,7 @@ export default class Topics {
     const topic: Topic = this.topicsArray[topicIndex];
     topic.downvote();
 
-    // Shift the topic down the priority queue if required
+    // Iteratively shift the topic down the priority queue if required
     while (topicIndex < this.topicsArray.length - 1) {
       const topicVotes = topic.getVotes();
       const nextTopic: Topic = this.topicsArray[topicIndex + 1];
